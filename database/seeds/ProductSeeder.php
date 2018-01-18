@@ -57,7 +57,7 @@ class ProductSeeder extends Seeder
 						</html>',
             'cover'=>'']);
                 $Product4 = Product::create([
-            'nama_product' => 'Pencil',
+            'nama_product' => 'jaket kulit',
             'detail' =>'<!DOCTYPE html>
   						<html>
 						<head>
@@ -71,7 +71,7 @@ class ProductSeeder extends Seeder
 						</html>',
             'cover'=>'']);
                  $Product5 = Product::create([
-            'nama_product' => 'Joger',
+            'nama_product' => 'jaket levis',
             'detail' =>'<!DOCTYPE html>
   						<html>
 						<head>
@@ -85,7 +85,7 @@ class ProductSeeder extends Seeder
 						</html>',
             'cover'=>'']);
                   $Product6 = Product::create([
-            'nama_product' => 'Short Jeans',
+            'nama_product' => 'jaket bommber',
             'detail' =>'<!DOCTYPE html>
   						<html>
 						<head>

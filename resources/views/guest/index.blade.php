@@ -53,11 +53,7 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="/">Home</a></li>
-       
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Product</a></li>
-        <li><a href="#"></a></li>
+        
       </ul>
     </nav>
     <!-- ################################################################################################ -->

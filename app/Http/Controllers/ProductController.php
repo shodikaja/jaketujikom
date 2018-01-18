@@ -31,7 +31,12 @@ public function index(Request $request, Builder $htmlBuilder)
             return view('datatable._action', [
                 'model'=> $Product,
                 'edit_url'=> route('Product.edit', $Product->id),
-                'drop_url'=> route('Product.destroy', $Product->id)
+                ]);
+        })
+               ->addColumn('delete', function($Product){
+            return view('datatable._delete', [
+                'model'=> $Product,
+                'form_url'=> route('Product.destroy', $Product->id),
                 ]);
         })->make(true);
     }
@@ -40,7 +45,8 @@ public function index(Request $request, Builder $htmlBuilder)
     ->addColumn(['data' => 'cover', 'name'=>'cover', 'title'=>'Gambar'])
     ->addColumn(['data' => 'nama_product', 'name'=>'nama_product', 'title'=>'Nama Product'])
     ->addColumn(['data' => 'detail', 'name'=>'detail', 'title'=>'Detail'])
-    ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
+    ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false])
+    ->addColumn(['data' => 'delete', 'name'=>'delete', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
     return view('Product.index')->with(compact('Product','html'));
     }
 
@@ -169,24 +175,13 @@ public function index(Request $request, Builder $htmlBuilder)
      */
     public function destroy($id)
     {
-        //
-        $Produk=Product::find($id);
-        $cover=$produk->cover;
-        if(! $produk->dalate()) return redirect()->back();
-        if($cover) {
-            $old_cover=$produk->cover;
-            $filepath=public_path() . DIRECTORY_SEPARATOR . 'img' . 
-                DIRECTORY_SEPARATOR .  $produk->cover;
-                try {
-                    file::delete($filepath);
-                } catch (FileNotFoundException $e) {
-
-                }
-        }
-        Session::flash("flash_notification", [
-            "level"=>"success",
+        
+        $Product= Product::find($id);
+        if(!Product:: destroy($id))return redirect()->back(); 
+            Session::flash("flash_notification", [
+            "level"=>"danger",
             "massage"=>"Barang berhasil di hapus"]);
-        return redirect()->route('admin.Product.index');
+        return redirect()->route('Product.index');
 
     }
 }

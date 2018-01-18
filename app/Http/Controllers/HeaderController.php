@@ -25,6 +25,7 @@ $Header = Header::select(['id','text_besar','text_kecil','background']);
                ->addColumn('action', function($Header){
             return view('datatable._action', [
                 'model'=> $Header,
+                'form_url'=> route('Header.destroy', $Header->id),
                 'edit_url'=> route('Header.edit', $Header->id)
                 ]);
         })->make(true);
